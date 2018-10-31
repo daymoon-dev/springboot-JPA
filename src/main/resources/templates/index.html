@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playcoin User Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body style="margin:20px">
+    <div class="container">
+
+    <!--    title      -->
+    <h1 class="text-center" style="margin-bottom:30px">Playcoin User Management</h1>
+
+    <!--            Alert Section             -->
+    <div class="panel panel-default" th:object="${user}">
+        <div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></div>
+        <div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        <div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}"></div>
+    </div>
+
+    <!--        Input Field        -->
+    <form class="input-group" style="margin-bottom:10px" action="#"
+          th:action="@{/}" th:object="${user}" method="post">
+        <input type="text" class="form-control mx-sm-1" th:field="*{userId}" placeholder="아이디">
+        <input type="text" class="form-control mx-sm-1" th:field="*{name}" placeholder="이름">
+        <input type="text" class="form-control mx-sm-1" th:field="*{email}" placeholder="이메일">
+        <input type="text" class="form-control mx-sm-1" th:field="*{nickName}" placeholder="닉네임">
+
+        <button type="submit" class="btn btn-primary mx-sm-1">추가</button>
+    </form>
+
+    <!--        Case of Not register User       -->
+    <div class="empty-user" th:if="${users.empty}">
+        <div class="lead text-center" style="margin-top:20px">사용자를 추가하시기 바랍니다</div>
+    </div>
+
+    <!--        View Table        -->
+    <div class="table-responsive" th:unless="${users.empty}">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>아이디</th>
+                    <th>이메일</th>
+                    <th>별명</th>
+                </tr>
+            </thead>
+            <tbody style="cursor:pointer">
+                <tr th:each="user:${users}">
+                    <td th:text="${user.id}" style="display:none"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.nickName}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+    <!--            Script              -->
+    <!--            jQuery              -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--            Bootstrap           -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

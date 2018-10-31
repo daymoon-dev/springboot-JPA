@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playcoin User Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body style="margin:20px">
+    <div class="container">
+
+    <!--    title      -->
+    <h1 class="display-5" style="margin-bottom:30px">Playcoin User Management</h1>
+
+    <!--    table     -->
+    <form class="input-group" style="margin-bottom:10px">
+        <input type="text" class="form-control mx-sm-1" id="user-id" placeholder="아이디">
+        <input type="text" class="form-control mx-sm-1" id="name" placeholder="이름">
+        <input type="text" class="form-control mx-sm-1" id="email" placeholder="이메일">
+        <input type="text" class="form-control mx-sm-1" id="nick-name" placeholder="닉네임">
+        <button type="submit" class="btn btn-primary mx-sm-1">추가</button>
+    </form>
+
+    <!--    table     -->
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>아이디</th>
+                    <th>이메일</th>
+                    <th>별명</th>
+                </tr>
+            </thead>
+            <tbody style="cursor:pointer">
+                <tr th:each="user:${users}">
+                    <td th:text="user.name"></td>
+                    <td th:text="user.id"></td>
+                    <td th:text="user.email"></td>
+                    <td th:text="user.nick_name"></td>
+                </tr>
+                <tr>
+                    <td>이종엽</td>
+                    <td>jylid89</td>
+                    <td>icn.daymoon@</td>
+                    <td>daymoon89</td>
+                </tr>
+                <tr>
+                    <td>이종엽</td>
+                    <td>jylid89</td>
+                    <td>icn.daymoon@</td>
+                    <td>daymoon89</td>
+                </tr>
+                <tr>
+                    <td>이종엽</td>
+                    <td>jylid89</td>
+                    <td>icn.daymoon@</td>
+                    <td>daymoon89</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <!--Bootstrap script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>
