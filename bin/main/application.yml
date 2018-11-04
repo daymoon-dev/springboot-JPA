@@ -9,3 +9,9 @@ spring:
     hibernate:
       ddl-auto: update
       use-new-id-generator-mappings: false
+
+    http:
+      encoding:
+        chartset: UTF-8
+        enable: true
+        force: true

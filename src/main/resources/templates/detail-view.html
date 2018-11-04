@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playcoin User Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body style="margin:20px">
+
+<div class="container">
+    <!--    title      -->
+    <h1 class="text-center" style="margin-bottom:30px">Playcoin User Management</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr th:each="users : ${users}">
+                <th scope="row">사원번호</th>
+                <td th:text="${users.id}"></td>
+            </tr>
+            <tr>
+                <th scope="row">이름</th>
+                <td th:text="${users.name}"></td>
+            </tr>
+            <tr>
+                <th scope="row">아이디</th>
+                <td th:text="${users.userId}"></td>
+            </tr>
+            <tr>
+                <th scope="row">이메일</th>
+                <td th:text="${users.email}"></td>
+            </tr>
+            <tr>
+                <th scope="row">닉네임</th>
+                <td th:text="${users.nickName}"></td>
+            </tr>
+            <tr>
+                <th scope="row">등록일시</th>
+                <td th:text="${users.regDate}"></td>
+            </tr>
+        </table>
+        <input class="btn btn-primary mx-sm-1" onclick='javascript:window.history.back()' value='목록으로' type='button' />
+    </div>
+
+</div>
+
+<!--            Script              -->
+<!--            jQuery              -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--            Bootstrap           -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

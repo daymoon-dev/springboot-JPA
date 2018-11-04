@@ -14,6 +14,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/")
 public class UserController {
 
     @Autowired
@@ -31,19 +32,28 @@ public class UserController {
     }
 
     @PostMapping(value = "/")
-    public String save(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+    public String save(@Valid @ModelAttribute User user,
+                       BindingResult bindingResult,
+                       Model model) {
 
         if (bindingResult.hasErrors()) {
 
+            model.addAttribute("users", userRepository.findAll());
             model.addAttribute(bindingResult.getAllErrors());
-
-            List<User> users = userRepository.findAll();
-            model.addAttribute("users", users);
 
             return "index";
         }
-
             userRepository.save(user);
             return "redirect:/";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String detail(@PathVariable Long id, Model model)
+    {
+        User users = userRepository.findById(id).get();
+
+        model.addAttribute("users", users);
+
+        return "detail-view";
     }
 }

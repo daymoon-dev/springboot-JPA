@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -14,19 +14,34 @@
     <div class="container">
 
     <!--    title      -->
-    <h1 class="display-5" style="margin-bottom:30px">Playcoin User Management</h1>
+    <h1 class="text-center" style="margin-bottom:30px">Playcoin User Management</h1>
 
-    <!--    table     -->
-    <form class="input-group" style="margin-bottom:10px">
-        <input type="text" class="form-control mx-sm-1" id="user-id" placeholder="아이디">
-        <input type="text" class="form-control mx-sm-1" id="name" placeholder="이름">
-        <input type="text" class="form-control mx-sm-1" id="email" placeholder="이메일">
-        <input type="text" class="form-control mx-sm-1" id="nick-name" placeholder="닉네임">
+    <!--            Alert Section             -->
+    <div class="panel panel-default" th:object="${user}">
+        <div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></div>
+        <div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        <div class="alert alert-warning" role="alert" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}"></div>
+    </div>
+
+    <!--        Input Field        -->
+    <form class="input-group" style="margin-bottom:10px" action="#"
+          th:action="@{/}" th:object="${user}" method="post">
+        <input type="text" class="form-control mx-sm-1" th:field="*{userId}" placeholder="아이디">
+        <input type="text" class="form-control mx-sm-1" th:field="*{name}" placeholder="이름">
+        <input type="text" class="form-control mx-sm-1" th:field="*{email}" placeholder="이메일">
+        <input type="text" class="form-control mx-sm-1" th:field="*{nickName}" placeholder="닉네임">
+
         <button type="submit" class="btn btn-primary mx-sm-1">추가</button>
     </form>
 
-    <!--    table     -->
-    <div class="table-responsive">
+    <!--        Case of Not register User       -->
+    <div class="empty-user" th:if="${users.empty}">
+        <div class="lead text-center" style="margin-top:20px">사용자를 추가하시기 바랍니다</div>
+    </div>
+
+    <!--        View Table        -->
+    <div class="table-responsive" th:unless="${users.empty}">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -38,36 +53,22 @@
             </thead>
             <tbody style="cursor:pointer">
                 <tr th:each="user:${users}">
-                    <td th:text="user.name"></td>
-                    <td th:text="user.id"></td>
-                    <td th:text="user.email"></td>
-                    <td th:text="user.nick_name"></td>
-                </tr>
-                <tr>
-                    <td>이종엽</td>
-                    <td>jylid89</td>
-                    <td>icn.daymoon@</td>
-                    <td>daymoon89</td>
-                </tr>
-                <tr>
-                    <td>이종엽</td>
-                    <td>jylid89</td>
-                    <td>icn.daymoon@</td>
-                    <td>daymoon89</td>
-                </tr>
-                <tr>
-                    <td>이종엽</td>
-                    <td>jylid89</td>
-                    <td>icn.daymoon@</td>
-                    <td>daymoon89</td>
+                    <td th:text="${user.id}" style="display:none"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.nickName}"></td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-    <!--Bootstrap script-->
+
+    <!--            Script              -->
+    <!--            jQuery              -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--            Bootstrap           -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
