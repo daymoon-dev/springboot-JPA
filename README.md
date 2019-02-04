@@ -15,12 +15,22 @@
 
 - 기타 제한사항
   - 사용자 속성 에 대한 server side validation 은 반드시 존재해야 합니다.(validation rule은 사용자 속성에 나와 있는 부분)
-  - server side validation check실패시 validation 실패 메세지를 front에 전달하여 alert(꼭 alert이 아니더라도 사용자가 식별할 수만 있으면 됩니다.) 으로 출력.
+  - server side validation check실패시 validation 실패 메세지를 front에 전달하여 alert(꼭 alert이 아니더라도 사용자가 식별할 수만 있으면 됩니다.) 으로 출력
+  
+  - Service Layer는 생략했습니다
 ---
   
+## 개발환경
+### OS
+- MacOS(Mojave)
 
+### Framework
 - Spring Boot (2.0.6.RELEASE)
 - JPA(Hibernate 6.0.10.Final)
+
+### HTML Template
 - Thymeleaf
+
+### etc.
 - H2
 - lombok
